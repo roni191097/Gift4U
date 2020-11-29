@@ -13,8 +13,8 @@ namespace Gift4U.Models
         public String Password { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
-        public int Type { get; set; }
         public int Telephone { get; set; }
+        public int Type { get; set; }
         public ICollection<Order> Orders { get; set; }
 
     }
