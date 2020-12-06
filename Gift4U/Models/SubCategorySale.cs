@@ -7,9 +7,9 @@ namespace Gift4U.Models
 {
     public class SubCategorySale
     {
-        public int SubCategoryID { get; set; }
+        public int StoreID { get; set; }
 
-        public SubCategory subCategory { get; set; }
+        public Stores Store { get; set; }
 
         public int SaleId { get; set; }
 

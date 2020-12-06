@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 
 namespace Gift4U.Models
 {
-    public class SubCategory
+    public class Stores
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "You must input a SubCategory name")]
+        [Required(ErrorMessage = "You must input a Store name")]
         [StringLength(30, ErrorMessage = "You cannot have a name longer than 30 characters")]
-
         public String Name { get; set; }
 
-        public int IdCategory { get; set; }
+        public Category Category { get; set; }
 
         public string ImageUrl { get; set; }
 
-        public ICollection<Order> Orderes { get; set; }
+        public ICollection<Order> Orders { get; set; }
 
         public ICollection<SubCategorySale> Sales { get; set; }
 
