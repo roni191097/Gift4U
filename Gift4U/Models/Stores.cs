@@ -21,7 +21,7 @@ namespace Gift4U.Models
 
         public ICollection<Order> Orders { get; set; }
 
-        public ICollection<SubCategorySale> Sales { get; set; }
+        public ICollection<StoreSale> Sales { get; set; }
 
     }
 }

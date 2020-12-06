@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gift4U.Models
 {
-    public class SubCategorySale
+    public class StoreSale
     {
         public int StoreID { get; set; }
 
