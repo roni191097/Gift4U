@@ -8,6 +8,7 @@ namespace Gift4U.Models
 {
     public class Order
     {
+        [Key]
         public int Id { get; set; }
 
         public User User { get; set; }

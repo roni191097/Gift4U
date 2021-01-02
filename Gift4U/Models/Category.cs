@@ -8,6 +8,7 @@ namespace Gift4U.Models
 {
     public class Category
     {
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "You must input a Category name")]

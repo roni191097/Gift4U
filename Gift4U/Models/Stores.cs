@@ -9,6 +9,7 @@ namespace Gift4U.Models
 {
     public class Stores
     {
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "You must input a Store name")]
@@ -25,7 +26,7 @@ namespace Gift4U.Models
 
         public ICollection<Order> Orders { get; set; }
 
-        public ICollection<StoreSale> Sales { get; set; }
+        public List<StoreSale> StoreSales { get; set; }
 
     }
 }

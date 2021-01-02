@@ -10,7 +10,7 @@ namespace Gift4U.Models
     {
 
         public int Id { get; set; }
-
+        [Key]
         [Required]
         [DataType(DataType.EmailAddress)]
         [EmailAddress]

@@ -8,6 +8,7 @@ namespace Gift4U.Models
 {
     public class Sale
     {
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "You must input a Sale name")]
@@ -17,7 +18,7 @@ namespace Gift4U.Models
         [Range(0, 100)]
         public int Percentage { get; set; }
 
-        public ICollection<Stores> Stores { get; set; }
+        public List<StoreSale> StoreSales { get; set; }
 
     }
 }
