@@ -15,5 +15,7 @@ namespace Gift4U.Data
         }
 
         public DbSet<Gift4U.Models.Category> Category { get; set; }
+
+        public DbSet<Gift4U.Models.User> User { get; set; }
     }
 }

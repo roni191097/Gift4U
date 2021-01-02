@@ -12,7 +12,7 @@ namespace Gift4U.Models
         public int Id { get; set; }
         [Key]
         [Required]
-        [DataType(DataType.EmailAddress)]
+        //[DataType(DataType.EmailAddress)]
         [EmailAddress]
         public String UserName { get; set; }
 
@@ -33,7 +33,7 @@ namespace Gift4U.Models
 
         [Required]
         [StringLength(10)]
-        [DataType(DataType.PhoneNumber)]
+        //[DataType(DataType.PhoneNumber)]
         [Phone]
         public int Telephone { get; set; }
 
