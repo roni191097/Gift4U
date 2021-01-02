@@ -17,6 +17,7 @@ namespace Gift4U.Models
 
         public Category Category { get; set; }
 
+        //add desc
         [StringLength(2000, ErrorMessage = "You cannot have a name longer than 2000 characters")]
         public String Description { get; set; }
         
