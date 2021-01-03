@@ -8,8 +8,8 @@ namespace Gift4U.Models
 {
     public class StoreSale
     {
-        [Key]
-        public int Id { get; set; }
+        /*[Key]
+        public int Id { get; set; }*/
         
 
         public int StoreID { get; set; }
