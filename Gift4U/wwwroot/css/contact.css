@@ -1,0 +1,68 @@
+﻿.display-4 {
+    font-weight: bold !important;
+    text-align: center !important;
+    margin-top: 75px !important;
+}
+
+.lead {
+    margin-top: 25px;
+    margin-right: 20px !important;
+    margin-left: 20px !important;
+    text-align: right !important;
+}
+
+.lead_1 {
+    margin-top: 25px;
+    margin-right: 20px !important;
+    text-align: right !important;
+}
+
+.display-3 {
+    font-weight: bold !important;
+    text-align: center !important;
+}
+
+
+.jumbotron /*כותרת*/ {
+    margin-top: 10px !important;
+}
+
+.active /*כפתור*/ {
+    margin-left: 720px;
+    margin-top: 10px;
+    background-color: palevioletred !important;
+}
+
+.form-group /*טופס*/ {
+    text-align: right !important;
+    text-align:center;
+    margin-top:20px;
+}
+
+
+.description {
+    display: none;
+    position: absolute;
+}
+
+
+
+.btn-sm {
+    background-color: pink !important;
+    margin-top: 10px;
+}
+
+.col-md-2 {
+    margin-top: 20px;
+}
+
+
+
+.btn-primary {
+    margin-right: 280px !important;
+    background-color: pink !important;
+}
+
+.col-md-6 mb-3 {
+    margin-left: 40px !important;
+}
