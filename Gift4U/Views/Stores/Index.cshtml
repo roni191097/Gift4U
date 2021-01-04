@@ -18,10 +18,17 @@
                     <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">קנו אצלי מתנה!</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" >
+                            <button class="btn">קנו אצלי מתנה!</button>
+                        </a>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+
+@section Css
+{
+    <link rel="stylesheet" href="~/css/stores.css" />
+}

@@ -16,9 +16,10 @@ namespace Gift4U.Models
         public Stores store { get; set; }
 
         [Range(0, 50000)]
+        [Required(ErrorMessage = "חובה להזין סכום")]
         public double Total { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "חובה להזין מייל מקבל המתנה")]
         public String GiftTo { get; set; }
 
         [DataType(DataType.Text)]
