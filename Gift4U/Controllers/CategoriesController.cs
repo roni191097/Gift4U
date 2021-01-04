@@ -80,13 +80,30 @@ namespace Gift4U.Controllers
             }
             return View(category);
         }
-
-        public IActionResult found(String N)
+        public async Task<IActionResult> Search (String Name)
         {
-            var x = from y in _context.Category
-                    where y.Name == N
-                    select y;
-            return View();
+            Category category;
+
+            //if (!String.IsNullOrEmpty(Name))
+            //{
+                category = _context.Category.Where(c=> c.Name == Name).FirstOrDefault();
+                if (category != null)
+                return View("Details", category);
+            else
+                    throw new Exception("Category not found");
+            //}
+        
+            //category = _context.Category.Where(c => c.Name == freeSearch).FirstOrDefault();
+            //if (category != null)
+            //    return View(category);
+            //else
+            //{
+            //    var store = _context.Stores.Where(c => c.Name == freeSearch).FirstOrDefault();
+            //    if (store != null)
+            //        return View(?);
+            //    else
+            //        throw new Exception("Category or store not found");
+            //}                                        
         }
 
         // POST: Categories/Edit/5

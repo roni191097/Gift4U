@@ -1,7 +1,9 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "lookingforgift";
 }
+
+@model Gift4U.Models.Category
 
 <html>
 
@@ -14,16 +16,28 @@
 
 <body dir="rtl">
 
-    <form asp-action="found">
+    <form asp-controller="Categories" asp-action="Search">
         <h1 class="display-4">חפשו לי מתנה</h1>
-          
+
+        @*<div class="form-group">
+                <div class="col-md-5 mb-5">
+                    <label for="sum">:עד סכום</label>
+                    <input type="number" class="form-control" id="formGroupExampleInput">
+                </div>
+            </div>*@
         <div class="form-group">
+            <div class="col-md-5 mb-5">
+                <label for="category">:קטגוריה</label>
+                <input type="text" class="form-control" id="c1" placeholder=" " asp-for="Name">
+            </div>
+        </div>
+        @*<div class="form-group">
             <div class="col-md-5 mb-5">
                 <label for="free search">:חיפוש חופשי</label>
                 <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="" name="N">
             </div>
-        </div>
-        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">חפש עבורי</a>
+        </div>*@
+        <input type="submit" value="חפש" class="btn btn-primary btn-lg active" />
     </form>
 
 </body>

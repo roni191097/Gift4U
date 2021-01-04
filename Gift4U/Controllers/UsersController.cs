@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Gift4U.Data;
 using Gift4U.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gift4U.Controllers
 {
@@ -42,7 +43,17 @@ namespace Gift4U.Controllers
 
             return View(user);
         }
+        public async Task<IActionResult> Login(string userName,string password)
+        {
+            var user = await _context.User.FirstOrDefaultAsync(m => m.UserName == userName);
 
+            if (user == null)
+                throw new Exception("UserName is not exists");
+            else if (user.Password != password)
+                throw new Exception("password is not valid");
+            else        
+                return View("Details", user);
+        }
         // GET: Users/Create
         public IActionResult Create()
         {
@@ -54,10 +65,12 @@ namespace Gift4U.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([Bind("Id,UserName,Password,FirstName,LastName,Type,Telephone")] User user)
         {
             if (ModelState.IsValid)
             {
+                 //if(p1==p2)
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -69,7 +82,6 @@ namespace Gift4U.Controllers
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> loginRegister([Bind("Id,UserName,Password,FirstName,LastName,Type,Telephone")] User user)
