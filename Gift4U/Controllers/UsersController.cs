@@ -65,6 +65,21 @@ namespace Gift4U.Controllers
             return View(user);
         }
 
+        public IActionResult loginRegister()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> loginRegister([Bind("Id,UserName,Password,FirstName,LastName,Type,Telephone")] User user)
+        {
+            
+            return View(user);
+        }
+
+        
+
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -133,6 +148,10 @@ namespace Gift4U.Controllers
 
             return View(user);
         }
+
+
+      
+
 
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]

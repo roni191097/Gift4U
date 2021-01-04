@@ -81,6 +81,14 @@ namespace Gift4U.Controllers
             return View(category);
         }
 
+        public IActionResult found(String N)
+        {
+            var x = from y in _context.Category
+                    where y.Name == N
+                    select y;
+            return View();
+        }
+
         // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
