@@ -8,6 +8,7 @@ namespace Gift4U.Models
 {
     public class User
     {
+        internal object password;
 
         public int Id { get; set; }
         [Key]

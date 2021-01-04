@@ -36,7 +36,19 @@ namespace Gift4U.Controllers
         {
             return View();
         }
-
+        public IActionResult loginRegister()
+        {
+            return View();
+        }
+        
+        public IActionResult HowItWork()
+        {
+            return View();
+        }
+        public IActionResult lookingforgift()
+        {
+            return View();
+        }
         public IActionResult cybersecurity()
         {
             return View();
