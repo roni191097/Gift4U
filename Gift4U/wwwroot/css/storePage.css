@@ -1,0 +1,23 @@
+﻿body {
+    text-align: center;
+}
+.storeImage {
+    margin: 10px auto 20px;
+    display: block;
+    padding-top: 50px;
+    float: initial;
+    width: 260px;
+    height: 150px
+}
+
+.ptext {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.btn {
+    background-color: pink;
+    align-content: center;
+    margin-right: auto;
+    margin-left: auto;
+}

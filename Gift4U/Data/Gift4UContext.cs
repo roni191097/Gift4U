@@ -14,8 +14,19 @@ namespace Gift4U.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder) { 
+            modelBuilder.Entity<StoreSale>().HasKey(pr => new { pr.SaleId, pr.StoreID });
+            modelBuilder.Entity<StoreSale>().HasOne(pt => pt.Store).WithMany(p => p.StoreSales).HasForeignKey(pt => pt.SaleId);
+            modelBuilder.Entity<StoreSale>().HasOne(pt => pt.Sale).WithMany(t => t.StoreSales).HasForeignKey(pt => pt.StoreID); 
+        }
+
+        
         public DbSet<Gift4U.Models.Category> Category { get; set; }
 
         public DbSet<Gift4U.Models.User> User { get; set; }
+
+        public DbSet<Gift4U.Models.Stores> Stores { get; set; }
+
+        public DbSet<Gift4U.Models.Order> Order { get; set; }
     }
 }

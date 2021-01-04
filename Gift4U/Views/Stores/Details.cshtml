@@ -1,0 +1,25 @@
+﻿@model Gift4U.Models.Stores
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div>
+
+    <img src="@Model.ImageUrl" class="storeImage" />
+    <p class="ptext">@Html.DisplayFor(model => model.Description)</p>
+    <a asp-area="" asp-controller="Orders" asp-action="Create">
+        <button class="btn" >קונים עכשיו!</button>
+    </a>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Css
+{
+    <link rel="stylesheet" href="~/css/storePage.css" />
+}

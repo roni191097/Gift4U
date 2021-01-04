@@ -1,0 +1,19 @@
+﻿body {
+    text-align: center;
+}
+
+.btn {
+    background-color: pink;
+}
+
+h4 {
+    text-align: center;
+}
+
+.row {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    
+}

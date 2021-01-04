@@ -12,14 +12,14 @@ namespace Gift4U.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "You must input a Store name")]
-        [StringLength(30, ErrorMessage = "You cannot have a name longer than 30 characters")]
+        [Required(ErrorMessage = "חובה להזין שם לחנות")]
+        [StringLength(30, ErrorMessage = "ארוך מידי, עד 30 תווים בבקשה")]
         public String Name { get; set; }
 
         public Category Category { get; set; }
 
         //add desc
-        [StringLength(2000, ErrorMessage = "You cannot have a name longer than 2000 characters")]
+        [StringLength(2000, ErrorMessage = "עד 2000 תווים בבקשה")]
         public String Description { get; set; }
         
         public string ImageUrl { get; set; }
