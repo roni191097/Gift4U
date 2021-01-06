@@ -28,5 +28,7 @@ namespace Gift4U.Data
         public DbSet<Gift4U.Models.Stores> Stores { get; set; }
 
         public DbSet<Gift4U.Models.Order> Order { get; set; }
+
+        public DbSet<Gift4U.Models.StoreSale> StoreSale { get; set; }
     }
 }

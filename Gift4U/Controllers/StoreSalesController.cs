@@ -10,32 +10,23 @@ using Gift4U.Models;
 
 namespace Gift4U.Controllers
 {
-    public class StoresController : Controller
+    public class StoreSalesController : Controller
     {
         private readonly Gift4UContext _context;
 
-        public StoresController(Gift4UContext context)
+        public StoreSalesController(Gift4UContext context)
         {
             _context = context;
         }
 
-        // GET: Stores
-        /*public async Task<IActionResult> Index()
+        // GET: StoreSales
+        public async Task<IActionResult> Index()
         {
-            return View(await _context.Stores.ToListAsync());
-        }*/
-
-        public async Task<IActionResult> Index(int id)
-        {
-            var storeList = from stores in _context.Stores
-                            where stores.Category.Id == id
-                            select stores;
-           
-
-            return View(await storeList.ToListAsync());
+            var gift4UContext = _context.StoreSale.Include(s => s.Sale).Include(s => s.Store);
+            return View(await gift4UContext.ToListAsync());
         }
 
-        // GET: Stores/Details/5
+        // GET: StoreSales/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,39 +34,45 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var stores = await _context.Stores
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (stores == null)
+            var storeSale = await _context.StoreSale
+                .Include(s => s.Sale)
+                .Include(s => s.Store)
+                .FirstOrDefaultAsync(m => m.SaleId == id);
+            if (storeSale == null)
             {
                 return NotFound();
             }
 
-            return View(stores);
+            return View(storeSale);
         }
 
-        // GET: Stores/Create
+        // GET: StoreSales/Create
         public IActionResult Create()
         {
+            ViewData["StoreID"] = new SelectList(_context.Set<Sale>(), "Id", "Name");
+            ViewData["SaleId"] = new SelectList(_context.Stores, "Id", "Name");
             return View();
         }
 
-        // POST: Stores/Create
+        // POST: StoreSales/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,ImageUrl")] Stores stores)
+        public async Task<IActionResult> Create([Bind("StoreID,SaleId")] StoreSale storeSale)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(stores);
+                _context.Add(storeSale);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(stores);
+            ViewData["StoreID"] = new SelectList(_context.Set<Sale>(), "Id", "Name", storeSale.StoreID);
+            ViewData["SaleId"] = new SelectList(_context.Stores, "Id", "Name", storeSale.SaleId);
+            return View(storeSale);
         }
 
-        // GET: Stores/Edit/5
+        // GET: StoreSales/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,22 +80,24 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var stores = await _context.Stores.FindAsync(id);
-            if (stores == null)
+            var storeSale = await _context.StoreSale.FindAsync(id);
+            if (storeSale == null)
             {
                 return NotFound();
             }
-            return View(stores);
+            ViewData["StoreID"] = new SelectList(_context.Set<Sale>(), "Id", "Name", storeSale.StoreID);
+            ViewData["SaleId"] = new SelectList(_context.Stores, "Id", "Name", storeSale.SaleId);
+            return View(storeSale);
         }
 
-        // POST: Stores/Edit/5
+        // POST: StoreSales/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImageUrl")] Stores stores)
+        public async Task<IActionResult> Edit(int id, [Bind("StoreID,SaleId")] StoreSale storeSale)
         {
-            if (id != stores.Id)
+            if (id != storeSale.SaleId)
             {
                 return NotFound();
             }
@@ -107,12 +106,12 @@ namespace Gift4U.Controllers
             {
                 try
                 {
-                    _context.Update(stores);
+                    _context.Update(storeSale);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StoresExists(stores.Id))
+                    if (!StoreSaleExists(storeSale.SaleId))
                     {
                         return NotFound();
                     }
@@ -123,10 +122,12 @@ namespace Gift4U.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(stores);
+            ViewData["StoreID"] = new SelectList(_context.Set<Sale>(), "Id", "Name", storeSale.StoreID);
+            ViewData["SaleId"] = new SelectList(_context.Stores, "Id", "Name", storeSale.SaleId);
+            return View(storeSale);
         }
 
-        // GET: Stores/Delete/5
+        // GET: StoreSales/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,30 +135,32 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var stores = await _context.Stores
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (stores == null)
+            var storeSale = await _context.StoreSale
+                .Include(s => s.Sale)
+                .Include(s => s.Store)
+                .FirstOrDefaultAsync(m => m.SaleId == id);
+            if (storeSale == null)
             {
                 return NotFound();
             }
 
-            return View(stores);
+            return View(storeSale);
         }
 
-        // POST: Stores/Delete/5
+        // POST: StoreSales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var stores = await _context.Stores.FindAsync(id);
-            _context.Stores.Remove(stores);
+            var storeSale = await _context.StoreSale.FindAsync(id);
+            _context.StoreSale.Remove(storeSale);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StoresExists(int id)
+        private bool StoreSaleExists(int id)
         {
-            return _context.Stores.Any(e => e.Id == id);
+            return _context.StoreSale.Any(e => e.SaleId == id);
         }
     }
 }

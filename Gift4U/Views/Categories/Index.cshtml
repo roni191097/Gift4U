@@ -24,7 +24,7 @@
                     <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-                        <a asp-area="" asp-controller="Stores" asp-action="Index" asp-route-category="@item.Id">
+                        <a asp-area="" asp-controller="Stores" asp-action="Index" asp-route-id="@item.Id">
                             <button class="btn">בחר אותי</button>
                         </a>
                     </div>
