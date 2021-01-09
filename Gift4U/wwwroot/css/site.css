@@ -29,14 +29,14 @@ a
     justify-content: space-between;
     align-items: center;
     align-content: flex-start;
-    padding-top: 60px;
+    padding-: 60px;
 }
 
 .navbar fixed-bottom navbar-light bg-light {
     padding: 60px 15px 0;
 }
 main > .container {
-    padding: 60px 15px 0;
+    padding-bottom: 60px 15px 0;
 }
 
 
