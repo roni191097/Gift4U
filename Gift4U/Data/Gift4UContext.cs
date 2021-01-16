@@ -31,6 +31,10 @@ namespace Gift4U.Data
 
         public DbSet<Gift4U.Models.StoreSale> StoreSale { get; set; }
 
+        public DbSet<Gift4U.Models.Contact> Contact { get; set; }
+
+        public DbSet<Gift4U.Models.MyPage> MyPage { get; set; }
+
         public DbSet<Gift4U.Models.Sale> Sale { get; set; }
     }
 }

@@ -20,6 +20,6 @@ namespace Gift4U.Models
 
         public ICollection<Stores> Stores { get; set; }
        
-
+        /*kkkk*/
     }
 }

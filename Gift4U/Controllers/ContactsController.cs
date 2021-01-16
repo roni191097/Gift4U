@@ -10,22 +10,22 @@ using Gift4U.Models;
 
 namespace Gift4U.Controllers
 {
-    public class CategoriesController : Controller
+    public class ContactsController : Controller
     {
         private readonly Gift4UContext _context;
 
-        public CategoriesController(Gift4UContext context)
+        public ContactsController(Gift4UContext context)
         {
             _context = context;
         }
 
-        // GET: Categories
+        // GET: Contacts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            return View(await _context.Contact.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Contacts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var contact = await _context.Contact
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(contact);
         }
 
-        // GET: Categories/Create
+        // GET: Contacts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Contacts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,ImageUrl")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Telephone,Email")] Contact contact)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                _context.Add(contact);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(contact);
         }
 
-        // GET: Categories/Edit/5
+        // GET: Contacts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,47 +73,22 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
+            var contact = await _context.Contact.FindAsync(id);
+            if (contact == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(contact);
         }
-        //public async Task<IActionResult> Search(String Name)
-        //{ 
-            //Category category;
 
-            //if (!String.IsNullOrEmpty(Name))
-            //{
-            //    category = _context.Category.Where(c=> c.Name == Name).FirstOrDefault();
-            //    if (category != null)
-            //    return View("Details", category);
-            //else
-            //        throw new Exception("Category not found");
-            ////}
-
-            //category = _context.Category.Where(c => c.Name == freeSearch).FirstOrDefault();
-            //if (category != null)
-            //    return View(category);
-            //else
-            //{
-            //    var store = _context.Stores.Where(c => c.Name == freeSearch).FirstOrDefault();
-            //    if (store != null)
-            //        return View(?);
-            //    else
-            //        throw new Exception("Category or store not found");
-        //    //}                                        
-        //}
-
-        // POST: Categories/Edit/5
+        // POST: Contacts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ImageUrl")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Telephone,Email")] Contact contact)
         {
-            if (id != category.Id)
+            if (id != contact.Id)
             {
                 return NotFound();
             }
@@ -122,12 +97,12 @@ namespace Gift4U.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(contact);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.Id))
+                    if (!ContactExists(contact.Id))
                     {
                         return NotFound();
                     }
@@ -138,10 +113,10 @@ namespace Gift4U.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(contact);
         }
 
-        // GET: Categories/Delete/5
+        // GET: Contacts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,30 +124,30 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var contact = await _context.Contact
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(contact);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
+            var contact = await _context.Contact.FindAsync(id);
+            _context.Contact.Remove(contact);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool ContactExists(int id)
         {
-            return _context.Category.Any(e => e.Id == id);
+            return _context.Contact.Any(e => e.Id == id);
         }
     }
 }
