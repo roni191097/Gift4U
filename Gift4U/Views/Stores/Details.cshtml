@@ -3,16 +3,24 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+@using Microsoft.AspNetCore.Http;
 
 
 <div>
 
     <img src="@Model.ImageUrl" class="storeImage" />
     <p class="ptext">@Html.DisplayFor(model => model.Description)</p>
-    <a asp-area="" asp-controller="Orders" asp-action="Create">
-        <button class="btn" >קונים עכשיו!</button>
-    </a>
+    @if (Context.Session.GetString("User") != null)
+    {
+        <a asp-area="" asp-controller="Orders" asp-action="Create">
+            <button class="btn">קונים עכשיו!</button>
+        </a>
+    }
+    else {
+        <a asp-area="" asp-controller="Users" asp-action="Login">
+            <button class="btn">התחבר עכשיו!</button>
+        </a>
+    }
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

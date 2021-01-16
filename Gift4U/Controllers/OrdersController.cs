@@ -49,10 +49,18 @@ namespace Gift4U.Controllers
             return View();
         }
 
-        // POST: Orders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*public IActionResult CreateForUser(User user)
+        {
+            if (user.Id != null)
+              return View();
+
+            return View();
+        }*/
+
+    // POST: Orders/Create
+    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+    // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Total,GiftTo,Bless,Date,ToDate")] Order order)
         {
