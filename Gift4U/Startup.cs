@@ -31,7 +31,7 @@ namespace Gift4U
                     options.UseSqlServer(Configuration.GetConnectionString("Gift4UContext")));
             services.AddSession(option =>
             {
-                option.IdleTimeout = TimeSpan.FromMinutes(15);
+                option.IdleTimeout = TimeSpan.FromMinutes(1);
             });
         }
 

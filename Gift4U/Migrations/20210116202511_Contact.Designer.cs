@@ -4,14 +4,16 @@ using Gift4U.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gift4U.Migrations
 {
     [DbContext(typeof(Gift4UContext))]
-    partial class Gift4UContextModelSnapshot : ModelSnapshot
+    [Migration("20210116202511_Contact")]
+    partial class Contact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,23 +69,6 @@ namespace Gift4U.Migrations
                     b.ToTable("Contact");
                 });
 
-            modelBuilder.Entity("Gift4U.Models.MyPage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("MyUserUserName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MyUserUserName");
-
-                    b.ToTable("MyPage");
-                });
-
             modelBuilder.Entity("Gift4U.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -101,9 +86,6 @@ namespace Gift4U.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MyPageId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ToDate")
                         .HasColumnType("datetime2");
 
@@ -117,8 +99,6 @@ namespace Gift4U.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MyPageId");
 
                     b.HasIndex("UserName");
 
@@ -223,19 +203,8 @@ namespace Gift4U.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("Gift4U.Models.MyPage", b =>
-                {
-                    b.HasOne("Gift4U.Models.User", "MyUser")
-                        .WithMany()
-                        .HasForeignKey("MyUserUserName");
-                });
-
             modelBuilder.Entity("Gift4U.Models.Order", b =>
                 {
-                    b.HasOne("Gift4U.Models.MyPage", null)
-                        .WithMany("MyOrders")
-                        .HasForeignKey("MyPageId");
-
                     b.HasOne("Gift4U.Models.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserName");
