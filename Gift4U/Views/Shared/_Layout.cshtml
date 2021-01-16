@@ -19,30 +19,17 @@
             <a class="nav-link" href="/home/HowItWork">איך זה עובד</a>
             <a class="nav-link" href="/home/lookingforgift"> חפשו לי מתנה</a>
             <a class="nav-link" href="/Users/Login">התחבר/הירשם</a>
-
-            @*
-                @if (Context.Session.GetString("user") != null)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link  " href="/Home/MyPage">עמוד אישי</a>
-                    </li>
-                    <li class="nav-item">
-                        Hello, @Context.Session.GetString("user")
-                    </li>
-                }
-            *@
-            @if (Context.Session.GetString("user") != null)
+            @if (Context.Session.GetString("User") != null)
             {
-                <a class="nav-link" href="/Users/MyPage">עמוד אישי/</a>
-                <li class="nav-item">
-                    Hello, @Context.Session.GetString("user")
-                </li>
-            }
-        </nav>
+                <a class="nav-link" href="/Orders/MyPage">עמוד אישי </a>
+               // <a class="nav-link" asp-controller="Users" asp-action="Logout"התנתק </a>
+                   }
+            </nav>
     </header>
+
+
     @*
-
-
+                            @Context.Session.GetString("user")
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -71,7 +58,6 @@
                 </div>
             </nav>
         </div>
-
     *@
 
     <div class="container">

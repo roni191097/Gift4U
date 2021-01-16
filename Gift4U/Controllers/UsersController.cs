@@ -31,8 +31,10 @@ namespace Gift4U.Controllers
             }
             else
             {
+               //ar orders = _context.Order.Where(x => x.User.UserName == userName);
+                // return View("~/Views/Orders/Index.cshtml", orders);
                 var orders = _context.Order.Where(x => x.User.UserName == userName);
-                return View("~/Views/Orders/Index.cshtml", orders);
+                 return View("~/Views/Orders/MyPage.cshtml", orders);
             }
         }
         // GET: Users/Details/5
