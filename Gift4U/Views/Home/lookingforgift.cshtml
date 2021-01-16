@@ -16,27 +16,14 @@
 
 <body dir="rtl">
 
-    <form asp-controller="Categories" asp-action="Search">
+    <form asp-controller="Home" asp-action="lookingforgift">
         <h1 class="display-4">חפשו לי מתנה</h1>
-
-        @*<div class="form-group">
-                <div class="col-md-5 mb-5">
-                    <label for="sum">:עד סכום</label>
-                    <input type="number" class="form-control" id="formGroupExampleInput">
-                </div>
-            </div>*@
         <div class="form-group">
             <div class="col-md-5 mb-5">
-                <label for="category">:קטגוריה</label>
+                <label for="category">:קטגוריה/חנות</label>
                 <input type="text" class="form-control" id="c1" placeholder=" " asp-for="Name">
             </div>
         </div>
-        @*<div class="form-group">
-            <div class="col-md-5 mb-5">
-                <label for="free search">:חיפוש חופשי</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="" name="N">
-            </div>
-        </div>*@
         <input type="submit" value="חפש" class="btn btn-primary btn-lg active" />
     </form>
 

@@ -80,19 +80,19 @@ namespace Gift4U.Controllers
             }
             return View(category);
         }
-        public async Task<IActionResult> Search (String Name)
-        {
-            Category category;
+        //public async Task<IActionResult> Search(String Name)
+        //{ 
+            //Category category;
 
             //if (!String.IsNullOrEmpty(Name))
             //{
-                category = _context.Category.Where(c=> c.Name == Name).FirstOrDefault();
-                if (category != null)
-                return View("Details", category);
-            else
-                    throw new Exception("Category not found");
-            //}
-        
+            //    category = _context.Category.Where(c=> c.Name == Name).FirstOrDefault();
+            //    if (category != null)
+            //    return View("Details", category);
+            //else
+            //        throw new Exception("Category not found");
+            ////}
+
             //category = _context.Category.Where(c => c.Name == freeSearch).FirstOrDefault();
             //if (category != null)
             //    return View(category);
@@ -103,8 +103,8 @@ namespace Gift4U.Controllers
             //        return View(?);
             //    else
             //        throw new Exception("Category or store not found");
-            //}                                        
-        }
+        //    //}                                        
+        //}
 
         // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

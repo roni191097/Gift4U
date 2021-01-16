@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Gift4U.Data;
 using Gift4U.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Gift4U.Controllers
 {
@@ -19,13 +21,20 @@ namespace Gift4U.Controllers
         {
             _context = context;
         }
-
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await _context.User.ToListAsync());
+            string userName = HttpContext.Session.GetString("User");
+            if(String.IsNullOrEmpty(userName))
+            {
+                return RedirectToAction(nameof(Login));
+            }
+            else
+            {
+                var orders = _context.Order.Where(x => x.User.UserName == userName);
+                return View("~/Views/Orders/Index.cshtml", orders);
+            }
         }
-
         // GET: Users/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -43,16 +52,32 @@ namespace Gift4U.Controllers
 
             return View(user);
         }
-        public async Task<IActionResult> Login(string userName,string password)
+        public IActionResult Login()
         {
-            var user = await _context.User.FirstOrDefaultAsync(m => m.UserName == userName);
-
-            if (user == null)
-                throw new Exception("UserName is not exists");
-            else if (user.Password != password)
-                throw new Exception("password is not valid");
-            else        
-                return View("Details", user);
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login([Bind("UserName,Password")] User user)
+        {
+            var u = (from a in _context.User
+                    where user.UserName == a.UserName && user.Password == a.Password
+                    select a).FirstOrDefault();
+            if(u!=null)
+            {
+                HttpContext.Session.SetString("User", u.UserName);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewData["Error"] = "User is not exist";
+            }
+            return View(user);
+        }
+        public async Task<IActionResult> Logout()
+        {
+                HttpContext.Session.SetString("User",null);
+                return RedirectToAction(nameof(Index));
         }
         // GET: Users/Create
         public IActionResult Create()
@@ -70,28 +95,13 @@ namespace Gift4U.Controllers
         {
             if (ModelState.IsValid)
             {
-                 //if(p1==p2)
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
         }
-
-        public IActionResult loginRegister()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> loginRegister([Bind("Id,UserName,Password,FirstName,LastName,Type,Telephone")] User user)
-        {
-            
-            return View(user);
-        }
-
         
-
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -160,9 +170,6 @@ namespace Gift4U.Controllers
 
             return View(user);
         }
-
-
-      
 
 
         // POST: Users/Delete/5

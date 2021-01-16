@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -16,8 +17,14 @@
             <img style=" float: right;" src="~/photos/logosh.png" width="100" height="50" />
             <a class="nav-link" href="/home/HowItWork">איך זה עובד</a>
             <a class="nav-link" href="/home/lookingforgift"> חפשו לי מתנה</a>
-            <a class="nav-link" href="/home/loginRegister">התחבר/הירשם</a>
-            <a class="nav-link" asp-controller="Orders" asp-action="Index">עמוד אישי</a>
+            <a class="nav-link" href="/Users/Login">התחבר/הירשם</a>
+            @if (Context.Session.GetString("user") != null)
+            {
+                <a class="nav-link" href="/Home/MyPage">עמוד אישי/</a>
+                <li class="nav-item">
+                    Hello, @Context.Session.GetString("user")
+                </li>
+            }
         </nav>
     </header>
     @*
@@ -50,20 +57,20 @@
 
     <footer>
         <div class=" footer">
-        <div class="navbar fixed-bottom navbar-light bg-light">
-            <a class="navbar-brand" href="#">Gift4U</a>
-            <a class="nav-link" href="/home/Regulations">תקנון</a>
-            <a class="nav-link" href="/home/cybersecurity">אבטחת מידע</a>
-            <a class="nav-link" href="/home/contact">צור קשר</a>
-        </div>
+            <div class="navbar fixed-bottom navbar-light bg-light">
+                <a class="navbar-brand" href="#">Gift4U</a>
+                <a class="nav-link" href="/home/Regulations">תקנון</a>
+                <a class="nav-link" href="/home/cybersecurity">אבטחת מידע</a>
+                <a class="nav-link" href="/home/contact">צור קשר</a>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-            @RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
 
