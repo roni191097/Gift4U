@@ -8,8 +8,6 @@ namespace Gift4U.Models
 {
     public class StoreSale
     {
-       
-        
         public int StoreID { get; set; }
 
         public Stores Store { get; set; }
