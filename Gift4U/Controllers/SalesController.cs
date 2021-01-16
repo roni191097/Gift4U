@@ -10,32 +10,22 @@ using Gift4U.Models;
 
 namespace Gift4U.Controllers
 {
-    public class StoresController : Controller
+    public class SalesController : Controller
     {
         private readonly Gift4UContext _context;
 
-        public StoresController(Gift4UContext context)
+        public SalesController(Gift4UContext context)
         {
             _context = context;
         }
 
-        // GET: Stores
-        /*public async Task<IActionResult> Index()
+        // GET: Sales
+        public async Task<IActionResult> Index()
         {
-            return View(await _context.Stores.ToListAsync());
-        }*/
-
-        public async Task<IActionResult> Index(int id)
-        {
-            var storeList = from stores in _context.Stores
-                            where stores.Category.Id == id
-                            select stores;
-           
-
-            return View(await storeList.ToListAsync());
+            return View(await _context.Sale.ToListAsync());
         }
 
-        // GET: Stores/Details/5
+        // GET: Sales/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,39 +33,39 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var stores = await _context.Stores
+            var sale = await _context.Sale
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (stores == null)
+            if (sale == null)
             {
                 return NotFound();
             }
 
-            return View(stores);
+            return View(sale);
         }
 
-        // GET: Stores/Create
+        // GET: Sales/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Stores/Create
+        // POST: Sales/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,ImageUrl")] Stores stores)
+        public async Task<IActionResult> Create([Bind("Id,Name,Percentage")] Sale sale)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(stores);
+                _context.Add(sale);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(stores);
+            return View(sale);
         }
 
-        // GET: Stores/Edit/5
+        // GET: Sales/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,22 +73,22 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var stores = await _context.Stores.FindAsync(id);
-            if (stores == null)
+            var sale = await _context.Sale.FindAsync(id);
+            if (sale == null)
             {
                 return NotFound();
             }
-            return View(stores);
+            return View(sale);
         }
 
-        // POST: Stores/Edit/5
+        // POST: Sales/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImageUrl")] Stores stores)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Percentage")] Sale sale)
         {
-            if (id != stores.Id)
+            if (id != sale.Id)
             {
                 return NotFound();
             }
@@ -107,12 +97,12 @@ namespace Gift4U.Controllers
             {
                 try
                 {
-                    _context.Update(stores);
+                    _context.Update(sale);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StoresExists(stores.Id))
+                    if (!SaleExists(sale.Id))
                     {
                         return NotFound();
                     }
@@ -123,10 +113,10 @@ namespace Gift4U.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(stores);
+            return View(sale);
         }
 
-        // GET: Stores/Delete/5
+        // GET: Sales/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,39 +124,30 @@ namespace Gift4U.Controllers
                 return NotFound();
             }
 
-            var stores = await _context.Stores
+            var sale = await _context.Sale
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (stores == null)
+            if (sale == null)
             {
                 return NotFound();
             }
 
-            return View(stores);
+            return View(sale);
         }
 
-        // POST: Stores/Delete/5
+        // POST: Sales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var stores = await _context.Stores.FindAsync(id);
-            _context.Stores.Remove(stores);
+            var sale = await _context.Sale.FindAsync(id);
+            _context.Sale.Remove(sale);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StoresExists(int id)
+        private bool SaleExists(int id)
         {
-            return _context.Stores.Any(e => e.Id == id);
-        }
-
-        public async Task<IActionResult> getSale(int id)
-        {
-            var saleList = from storeSale in _context.StoreSale
-                            where storeSale.StoreID == id
-                            select storeSale;
-
-            return View(await saleList.ToListAsync());
+            return _context.Sale.Any(e => e.Id == id);
         }
     }
 }
