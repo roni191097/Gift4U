@@ -78,7 +78,7 @@ namespace Gift4U.Controllers
         }
         public async Task<IActionResult> Logout()
         {
-                HttpContext.Session.SetString("User",null);
+                HttpContext.Session.Remove("User");
                 return RedirectToAction(nameof(Index));
         }
         // GET: Users/Create
