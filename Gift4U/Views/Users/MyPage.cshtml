@@ -1,0 +1,41 @@
+﻿@model Gift4U.Models.User
+@{
+    ViewData["Title"] = "MyPage";
+}
+
+@using Microsoft.AspNetCore.Http;
+
+<body dir="rtl">
+    <h1>עמוד אישי</h1>
+    <div>
+        @if (Context.Session.GetString("User") != null)
+        {
+            @*@if (Context.Session.GetString("UserName") == "chen@gmail.com")
+                if (@Model.UserName== "chen@gmail.com")
+                    {*@
+            <h2>תפריט מנהל</h2>
+            <a asp-area="" asp-controller="Categories" asp-action="Create">
+                <button class="btn">הוספת קטגוריה חדשה</button>
+            </a>
+            <a asp-area="" asp-controller="Stores" asp-action="Create">
+                <button class="btn">הוספת חנות חדשה</button>
+            </a>
+            <a asp-area="" asp-controller="Sales" asp-action="Create">
+                <button class="btn">הוספת מבצע חדש</button>
+            </a>
+            <a asp-area="" asp-controller="Contacts" asp-action="Index">
+                <button class="btn">פניות שממתינות למענה</button>
+            </a>
+            @*}*@
+        }
+        else
+        {
+
+        }
+    </div>
+</body>
+
+
+
+
+
