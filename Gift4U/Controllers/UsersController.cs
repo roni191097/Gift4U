@@ -34,7 +34,7 @@ namespace Gift4U.Controllers
                //ar orders = _context.Order.Where(x => x.User.UserName == userName);
                 // return View("~/Views/Orders/Index.cshtml", orders);
                 var orders = _context.Order.Where(x => x.User.UserName == userName);
-                 return View("~/Views/Orders/MyPage.cshtml", orders);
+                 return View("~/Views/Users/MyPage.cshtml");
             }
         }
         // GET: Users/Details/5
@@ -58,6 +58,7 @@ namespace Gift4U.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("UserName,Password")] User user)
@@ -72,7 +73,7 @@ namespace Gift4U.Controllers
             }
             else
             {
-                ViewData["Error"] = "User is not exist";
+                ViewData["Error"] = "המשתמש לא קיים, בוא תירשם :)";
             }
             return View(user);
         }
