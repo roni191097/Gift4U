@@ -22,7 +22,7 @@ namespace Gift4U.Controllers
         // GET: Stores
         /*public async Task<IActionResult> Index()
         {
-            return View(await _context.Stores.ToListAsync());
+            //return View(await _context.Stores.ToListAsync());
         }*/
 
         public async Task<IActionResult> Index(int id)
@@ -30,9 +30,8 @@ namespace Gift4U.Controllers
             var storeList = from stores in _context.Stores
                             where stores.Category.Id == id
                             select stores;
-           
 
-            return View(await storeList.ToListAsync());
+            return View(await storeList.Include(x => x.StoreSales).ThenInclude(x => x.Sale).ToListAsync());
         }
 
         // GET: Stores/Details/5
@@ -160,13 +159,13 @@ namespace Gift4U.Controllers
             return _context.Stores.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> getSale(int id)
+        /*public List<Sale> getSale(int id)
         {
             var saleList = from storeSale in _context.StoreSale
                             where storeSale.StoreID == id
                             select storeSale;
 
-            return View(await saleList.ToListAsync());
-        }
+            return saleList.ToListAsync();
+        }*/
     }
 }

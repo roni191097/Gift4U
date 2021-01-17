@@ -6,31 +6,31 @@
 
 <h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>האם אתה בטוח שברצונך למחוק את הפניה?</h3>
 <div>
-    <h4>Contact</h4>
+    <h4>פרטי פניה:</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+            שם פרטי
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+            שם משפחה
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telephone)
+           טלפון
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Telephone)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
+            דואר אלקטרוני
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Email)
@@ -39,7 +39,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="מחק" class="btn btn-danger" /> |
+        <a asp-action="Index">חזרה לרשימת פניות</a>
     </form>
 </div>

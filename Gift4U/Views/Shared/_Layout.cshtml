@@ -23,7 +23,7 @@
             <a class="nav-link" href="/Users/Login">התחבר/הירשם</a>
             @if (Context.Session.GetString("User") != null)
             {
-                <a class="nav-link" href="/Users/MyPage">עמוד אישי </a>
+                <a class="nav-link" asp-controller="Users" asp-action="Index">עמוד אישי </a>
                 <a class="nav-link" asp-controller="Users" asp-action="Logout">התנתק</a>
             }
             </nav>

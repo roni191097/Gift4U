@@ -31,12 +31,14 @@ namespace Gift4U.Controllers
             }
             else
             {
-               //ar orders = _context.Order.Where(x => x.User.UserName == userName);
+                //ar orders = _context.Order.Where(x => x.User.UserName == userName);
                 // return View("~/Views/Orders/Index.cshtml", orders);
-                var orders = _context.Order.Where(x => x.User.UserName == userName);
-                 return View("~/Views/Users/MyPage.cshtml");
+                //var orders = _context.Order.Where(x => x.User.UserName == userName);
+                 return View("MyPage");
             }
         }
+
+       
         // GET: Users/Details/5
         public async Task<IActionResult> Details(string id)
         {

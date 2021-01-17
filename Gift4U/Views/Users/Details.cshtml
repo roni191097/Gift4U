@@ -4,44 +4,39 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>פרטים אישיים</h1>
 
 <div>
-    <h4>User</h4>
+    <h4>איזה כיף לנו שאתה כאן :)</h4>
     <hr />
     <dl class="row">
+       
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
+           סיסמא:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Password)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+            שם פרטי:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+           שם משפחה:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
+            סוג:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Type)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telephone)
+            טלפון:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Telephone)
@@ -49,6 +44,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.UserName">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a style="color:deeppink" asp-action="Edit" asp-route-id="@Model.UserName">עריכת פרטים</a> |
+    @*<a asp-action="Index">Back to List</a>*@
 </div>

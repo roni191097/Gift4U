@@ -7,36 +7,36 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Contact</h4>
+    <h4>פרטי הפניה:</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+            שם פרטי
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+            שם משפחה
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telephone)
+            טלפון
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Telephone)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
+            דואר אלקטרוני
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-10" style="color:deeppink">
             @Html.DisplayFor(model => model.Email)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    <a asp-action="Index" style="color:deeppink" >חזרה לרשימה</a>
 </div>

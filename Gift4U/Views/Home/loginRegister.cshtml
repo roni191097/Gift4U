@@ -17,30 +17,30 @@
         <h1 class="display-4">התחבר/הרשם</h1>
         <div class="form-group">
             <div class="col-md-3 mb-3">
-                <label for="firstname">:שם פרטי</label>
+                <label for="firstname">שם פרטי:</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" asp-for="FirstName">
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-3 mb-3">
-                <label for="lastname">:שם משפחה</label>
+                <label for="lastname">שם משפחה:</label>
                 <input type="text" class="form-control" id="formGroupExampleInput2" asp-for="LastName">
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-3 mb-3">
-                <label for="email">:מייל</label>
+                <label for="email">דואר אלקטרוני:</label>
                 <input type="email" class="form-control" id="formGroupExampleInput2" asp-for="UserName">
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-3 mb-3">
-                <label for="password">:סיסמה</label>
+                <label for="password">סיסמא:</label>
                 <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="" asp-for="Password">
             </div>
         </div>
-      
-        <input type="submit" value="הירשם" class="btn btn-primary btn-lg active" onclick="MessageBox(הרשמה בוצעה בהצלחה)" />
+
+        <input type="submit" value="הירשם" class="btn btn-primary btn-lg active" onclick="showMessage();" />
     </form>
 </body>
 
@@ -56,8 +56,16 @@
 
 </html>
 
+@section scripts{
+    <script>
+        function showMessage() {
+            alert('הרשמה בוצעה בהצלחה!');
+        }
+    </script>
+}
+
 @section Css
 {
-    <link rel="stylesheet" href="~/css/contact.css" />
-}
+        <link rel="stylesheet" href="~/css/contact.css" />
+    }
 

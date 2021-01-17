@@ -20,10 +20,21 @@ namespace Gift4U.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             return View(await _context.Order.ToListAsync());
+        }*/
+
+        public async Task<IActionResult> Index(string userName)
+        {
+            var orderList = from orders in _context.Order
+                            where orders.User.UserName == userName
+                            select orders;
+
+
+            return View(await orderList.ToListAsync());
         }
+
 
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
